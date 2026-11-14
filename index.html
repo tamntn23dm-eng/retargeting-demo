@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Retargeting Demo - MoMo</title>
+
+  <!-- Meta Pixel Code -->
+  <!-- Thay YOUR_PIXEL_ID (2 vị trí) bằng Pixel ID thật -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', 'YOUR_PIXEL_ID');
+    fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1"/></noscript>
+  <!-- End Meta Pixel Code -->
+
+  <!-- Google Tag Manager -->
+  <!-- Thay GTM-XXXXXXX (2 vị trí: ở đây và ở thẻ noscript trong body) bằng GTM ID thật -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-XXXXXXX');
+  </script>
+  <!-- End Google Tag Manager -->
+
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #fdf2f7;
+      color: #333;
+      margin: 0;
+      padding: 40px 20px;
+      text-align: center;
+    }
+    h1 { color: #a50064; }
+    p { max-width: 520px; margin: 12px auto 28px; line-height: 1.5; }
+    #btn-download {
+      display: inline-block;
+      background: #a50064;
+      color: #fff;
+      padding: 14px 28px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    #status { margin-top: 20px; font-size: 14px; color: #666; }
+  </style>
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <h1>Ưu đãi MoMo cho người dùng mới</h1>
+  <p>Trang demo dùng để kiểm tra theo dõi hành vi cho kế hoạch nhắm chọn lại (Retargeting). Bấm nút bên dưới để gửi sự kiện bấm tải ứng dụng.</p>
+
+  <a id="btn-download" href="https://momo.vn" target="_blank" rel="noopener">Tải ứng dụng MoMo</a>
+  <div id="status"></div>
+
+  <script>
+    // Gửi sự kiện khi bấm nút "Tải ứng dụng"
+    document.getElementById('btn-download').addEventListener('click', function () {
+      // Gửi sự kiện tùy chỉnh về Meta Pixel
+      fbq('trackCustom', 'ClickDownload');
+      // Gửi sự kiện cho Google Tag Manager (từ đó chuyển sang GA4)
+      window.dataLayer.push({ event: 'click_download' });
+      document.getElementById('status').textContent = 'Đã gửi sự kiện click_download và ClickDownload.';
+    });
+  </script>
+</body>
+</html>
